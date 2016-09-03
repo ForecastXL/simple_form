@@ -170,21 +170,30 @@ module SimpleForm
       #
       #  Take a look at our locale example file.
       def translate_from_namespace(namespace, default = '')
+        if SimpleForm.i18n_lookups.any?
+          lookups = i18n_lookups(namespace) << default
+          I18n.t(lookups.shift, default: lookups).presence
+        elsif default.present?
+          I18n.t(default)
+        end
+      end
+
+      def i18n_lookups(namespace)
         model_names = lookup_model_names.dup
-        lookups     = []
+        lookups = []
 
         while !model_names.empty?
-          joined_model_names = model_names.join(".")
+          SimpleForm.i18n_lookups.each do |lookup|
+            lookups << lookup.gsub('{model_names}',model_names.join('.'))
+          end
           model_names.shift
-
-          lookups << :"#{joined_model_names}.#{lookup_action}.#{reflection_or_attribute_name}"
-          lookups << :"#{joined_model_names}.#{reflection_or_attribute_name}"
         end
-        lookups << :"defaults.#{lookup_action}.#{reflection_or_attribute_name}"
-        lookups << :"defaults.#{reflection_or_attribute_name}"
-        lookups << default
 
-        I18n.t(lookups.shift, scope: :"#{i18n_scope}.#{namespace}", default: lookups).presence
+        lookups.map do |lookup|
+          lookup.gsub(/\{[a-z18_]+\}/) do |match|
+            match == '{namespace}' ? namespace : send(match.delete('{}'))
+          end.to_sym
+        end
       end
 
       def merge_wrapper_options(options, wrapper_options)

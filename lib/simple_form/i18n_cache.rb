@@ -1,5 +1,5 @@
 module SimpleForm
-  # A lot of configuration values are retrived from I18n,
+  # A lot of configuration values are retrieved from I18n,
   # like boolean collection, required string. This module provides
   # caching facility to speed up form construction.
   module I18nCache

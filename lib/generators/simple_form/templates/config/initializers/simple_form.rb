@@ -162,4 +162,15 @@ SimpleForm.setup do |config|
 
   # Defines which i18n scope will be used in Simple Form.
   # config.i18n_scope = 'simple_form'
+
+  # Defines which keys will be used to lookup the translation. Strings within curly brackets will
+  # are functions that will be called. This allows you to limit the number of lookups or skip it
+  # altogether by passing an empty array.
+  #
+  # i18n_lookups = [
+  #   '{i18n_scope}.{namespace}.{model_names}.{lookup_action}.{reflection_or_attribute_name}',
+  #   '{i18n_scope}.{namespace}.{model_names}.{reflection_or_attribute_name}',
+  #   '{i18n_scope}.{namespace}.defaults.{lookup_action}.{reflection_or_attribute_name}',
+  #   '{i18n_scope}.{namespace}.defaults.{reflection_or_attribute_name}'
+  # ]
 end

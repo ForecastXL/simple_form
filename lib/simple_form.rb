@@ -198,6 +198,14 @@ See https://github.com/plataformatec/simple_form/pull/997 for more information.
   mattr_accessor :i18n_scope
   @@i18n_scope = 'simple_form'
 
+  mattr_accessor :i18n_lookups
+  @@i18n_lookups = [
+    '{i18n_scope}.{namespace}.{model_names}.{lookup_action}.{reflection_or_attribute_name}',
+    '{i18n_scope}.{namespace}.{model_names}.{reflection_or_attribute_name}',
+    '{i18n_scope}.{namespace}.defaults.{lookup_action}.{reflection_or_attribute_name}',
+    '{i18n_scope}.{namespace}.defaults.{reflection_or_attribute_name}'
+  ]
+
   # Retrieves a given wrapper
   def self.wrapper(name)
     @@wrappers[name.to_s] or raise WrapperNotFound, "Couldn't find wrapper with name #{name}"
