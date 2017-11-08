@@ -113,7 +113,7 @@ an error, or even a placeholder. For boolean inputs, you can add an inline label
 <% end %>
 ```
 
-In some cases you may want to disable labels, hints or error. Or you may want to configure the html
+In some cases you may want to disable labels, hints or errors. Or you may want to configure the html
 of any of them:
 
 ```erb
@@ -164,7 +164,7 @@ any html attribute to that wrapper as well using the `:wrapper_html` option, lik
 
 Required fields are marked with an * prepended to their labels.
 
-By default all inputs are required. When the form object includes `ActiveModel::Validations` 
+By default all inputs are required. When the form object includes `ActiveModel::Validations`
 (which, for example, happens with Active Record models), fields are required only when there is `presence` validation.
 Otherwise, **Simple Form** will mark fields as optional. For performance reasons, this
 detection is skipped on validations that make use of conditional options, such as `:if` and `:unless`.
@@ -214,7 +214,7 @@ the wrapper as well:
 <% end %>
 ```
 
-**Simple Form** accepts same options as their corresponding input type helper in Rails:
+**Simple Form** inputs accept the same options as their corresponding input type helper in Rails:
 
 ```erb
 <%= simple_form_for @user do |f| %>
@@ -541,31 +541,31 @@ The following table shows the html element you will get for each attribute
 according to its database definition. These defaults can be changed by
 specifying the helper method in the column `Mapping` as the `as:` option.
 
-     Mapping         | Generated HTML Element               | Database Column Type
-     --------------- |:-------------------------------------|:--------------------
-     `boolean`       | `input[type=checkbox]`               | `boolean`
-     `string`        | `input[type=text]`                   | `string`
-     `email`         | `input[type=email]`                  | `string` with `name =~ /email/`
-     `url`           | `input[type=url]`                    | `string` with `name =~ /url/`
-     `tel`           | `input[type=tel]`                    | `string` with `name =~ /phone/`
-     `password`      | `input[type=password]`               | `string` with `name =~ /password/`
-     `search`        | `input[type=search]`                 | -
-     `uuid`          | `input[type=text]`                   | `uuid`
-     `text`          | `textarea`                           | `text`
-     `file`          | `input[type=file]`                   | `string` responding to file methods
-     `hidden`        | `input[type=hidden]`                 | -
-     `integer`       | `input[type=number]`                 | `integer`
-     `float`         | `input[type=number]`                 | `float`
-     `decimal`       | `input[type=number]`                 | `decimal`
-     `range`         | `input[type=range]`                  | -
-     `datetime`      | `datetime select`                    | `datetime/timestamp`
-     `date`          | `date select`                        | `date`
-     `time`          | `time select`                        | `time`
-     `select`        | `select`                             | `belongs_to`/`has_many`/`has_and_belongs_to_many` associations
-     `radio_buttons` | collection of `input[type=radio]`    | `belongs_to` associations
-     `check_boxes`   | collection of `input[type=checkbox]` | `has_many`/`has_and_belongs_to_many` associations
-     `country`       | `select` (countries as options)      | `string` with `name =~ /country/`
-     `time_zone`     | `select` (timezones as options)      | `string` with `name =~ /time_zone/`
+Mapping         | Generated HTML Element               | Database Column Type
+--------------- |--------------------------------------|---------------------
+`boolean`       | `input[type=checkbox]`               | `boolean`
+`string`        | `input[type=text]`                   | `string`
+`email`         | `input[type=email]`                  | `string` with `name =~ /email/`
+`url`           | `input[type=url]`                    | `string` with `name =~ /url/`
+`tel`           | `input[type=tel]`                    | `string` with `name =~ /phone/`
+`password`      | `input[type=password]`               | `string` with `name =~ /password/`
+`search`        | `input[type=search]`                 | -
+`uuid`          | `input[type=text]`                   | `uuid`
+`text`          | `textarea`                           | `text`
+`file`          | `input[type=file]`                   | `string` responding to file methods
+`hidden`        | `input[type=hidden]`                 | -
+`integer`       | `input[type=number]`                 | `integer`
+`float`         | `input[type=number]`                 | `float`
+`decimal`       | `input[type=number]`                 | `decimal`
+`range`         | `input[type=range]`                  | -
+`datetime`      | `datetime select`                    | `datetime/timestamp`
+`date`          | `date select`                        | `date`
+`time`          | `time select`                        | `time`
+`select`        | `select`                             | `belongs_to`/`has_many`/`has_and_belongs_to_many` associations
+`radio_buttons` | collection of `input[type=radio]`    | `belongs_to` associations
+`check_boxes`   | collection of `input[type=checkbox]` | `has_many`/`has_and_belongs_to_many` associations
+`country`       | `select` (countries as options)      | `string` with `name =~ /country/`
+`time_zone`     | `select` (timezones as options)      | `string` with `name =~ /time_zone/`
 
 ## Custom inputs
 
@@ -812,7 +812,7 @@ object itself. Thus, similarly, if a form for an `Admin::User` object is defined
 `simple_form_for @admin_user, as: :some_user`, **Simple Form** will look for translations
 under `some_user` instead of `admin_user`.
 
-When translate `simple_fields_for` attributes be sure to use the same name you pass to it, e.g. `simple_fields_for :posts` should be placed under `posts` not `post`:
+When translating `simple_fields_for` attributes be sure to use the same name you pass to it, e.g. `simple_fields_for :posts` should be placed under `posts` not `post`:
 
 ```yaml
 en:
@@ -1057,7 +1057,7 @@ http://rubydoc.info/github/plataformatec/simple_form/master/frames
 ### Bug reports
 
 If you discover any bugs, feel free to create an issue on GitHub. Please add as much information as
-possible to help us fixing the possible bug. We also encourage you to help even more by forking and
+possible to help us in fixing the potential bug. We also encourage you to help even more by forking and
 sending us a pull request.
 
 https://github.com/plataformatec/simple_form/issues

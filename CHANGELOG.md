@@ -1,5 +1,16 @@
 ## Unreleased
 
+## 3.5.0
+
+* Updated gem dependency to support Rails 5.1.x.
+
+## 3.4.0
+
+* Removed Ruby 2.4.0 `Integer` unification deprecation warning.
+* Removed EOL Ruby 1.9.3 from the build matrix.
+* Added `minlength` component.
+* `boolean_label_class` can be set on a per-input basis.
+
 ## 3.3.1
 
 ### Bug fix

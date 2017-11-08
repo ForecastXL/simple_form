@@ -1,6 +1,9 @@
 module SimpleForm
   module Inputs
     class CollectionInput < Base
+      BASIC_OBJECT_CLASSES = [String, Integer, Float, NilClass, Symbol, TrueClass, FalseClass]
+      BASIC_OBJECT_CLASSES.push(Fixnum, Bignum) unless 1.class == Integer
+
       # Default boolean collection for use with selects/radios when no
       # collection is given. Always fallback to this boolean collection.
       # Texts can be translated using i18n in "simple_form.yes" and
@@ -90,9 +93,7 @@ module SimpleForm
       end
 
       def collection_includes_basic_objects?(collection_classes)
-        (collection_classes & [
-          String, Integer, Fixnum, Bignum, Float, NilClass, Symbol, TrueClass, FalseClass
-        ]).any?
+        (collection_classes & BASIC_OBJECT_CLASSES).any?
       end
 
       def translate_collection

@@ -87,7 +87,7 @@ class InputFieldTest < ActionView::TestCase
     assert_select 'input[pattern="\w+"]'
   end
 
-  test 'builder input_field accepts custom patter' do
+  test 'builder input_field accepts custom pattern' do
     with_input_field_for @other_validating_user, :country, as: :string, pattern: '\d+'
 
     assert_select 'input[pattern="\d+"]'
@@ -103,6 +103,12 @@ class InputFieldTest < ActionView::TestCase
     with_input_field_for @validating_user, :name, as: :string
 
     assert_select 'input.string[maxlength="25"]'
+  end
+
+  test 'builder input_field uses minlength component' do
+    with_input_field_for @validating_user, :name, as: :string
+
+    assert_select 'input.string[minlength="5"]'
   end
 
   test 'builder collection input_field generates input tag with a clean HTML' do
@@ -148,6 +154,14 @@ class InputFieldTest < ActionView::TestCase
       with_input_field_for @user, :name, maxlength: 5
 
       assert_select 'input[maxlength="5"]'
+    end
+  end
+
+  test 'build input_field without minlength component use the minlength string' do
+    swap_wrapper :default, custom_wrapper_with_html5_components do
+      with_input_field_for @user, :name, minlength: 5
+
+      assert_select 'input[minlength="5"]'
     end
   end
 

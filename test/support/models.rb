@@ -128,6 +128,15 @@ class User
 
   begin
     require 'active_model/type'
+    begin
+      ActiveModel::Type.lookup(:text)
+    rescue ArgumentError        # :text is no longer an ActiveModel::Type
+      # But we don't want our tests to depend on ActiveRecord
+      class ::ActiveModel::Type::Text < ActiveModel::Type::String
+        def type; :text; end
+      end
+      ActiveModel::Type.register(:text, ActiveModel::Type::Text)
+    end
     def type_for_attribute(attribute)
       column_type, limit = case attribute
         when 'name', 'status', 'password' then [:string, 100]
@@ -236,8 +245,8 @@ class ValidatingUser < User
     greater_than_or_equal_to: :min_attempts,
     less_than_or_equal_to: :max_attempts,
     only_integer: true
-  validates_length_of :name, maximum: 25
-  validates_length_of :description, maximum: 50
+  validates_length_of :name, maximum: 25, minimum: 5
+  validates_length_of :description, in: 15..50
   if ActionPack::VERSION::STRING < '5'
     validates_length_of :action, maximum: 10, tokenizer: lambda { |str| str.scan(/\w+/) }
   end
